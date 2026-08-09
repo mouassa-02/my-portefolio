@@ -197,11 +197,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const navToggle = document.querySelector("[data-nav-toggle]");
   const navPanel = document.querySelector("[data-nav-panel]");
 
+  function closeNavPanel() {
+    if (navPanel?.classList.contains("is-open")) {
+      navToggle?.setAttribute("aria-expanded", "false");
+      navPanel.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+  }
+
   navToggle?.addEventListener("click", () => {
     const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
     navToggle.setAttribute("aria-expanded", !isExpanded);
     navPanel?.classList.toggle("is-open");
+    document.body.style.overflow = !isExpanded ? "hidden" : "";
     playLuxuryClick(600);
+  });
+
+  // Fermer le menu mobile lors du clic sur un lien
+  document.querySelectorAll(".nav__link, .nav__actions a").forEach((link) => {
+    link.addEventListener("click", () => {
+      closeNavPanel();
+    });
+  });
+
+  // Fermer sur appui de la touche Échap ou clic extérieur
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeNavPanel();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (
+      navPanel?.classList.contains("is-open") &&
+      !navPanel.contains(e.target) &&
+      !navToggle?.contains(e.target)
+    ) {
+      closeNavPanel();
+    }
   });
 
   // 6. Scroll Reveal Observer
