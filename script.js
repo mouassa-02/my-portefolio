@@ -418,7 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailLink = document.getElementById("contactEmail");
 
   copyBtn?.addEventListener("click", () => {
-    const email = emailLink?.textContent || "moussasayah.dev@gmail.com";
+    const email = emailLink?.textContent || "moussa.sayah021984@gmail.com";
     navigator.clipboard.writeText(email).then(() => {
       showToast("Adresse email copiée dans le presse-papier ! ✦");
       playLuxuryClick(1000);
