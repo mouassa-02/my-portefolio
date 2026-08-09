@@ -526,9 +526,12 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Erreur envoi email:", err);
       if (formStatus) {
         formStatus.style.color = "#ff6b6b";
-        formStatus.textContent = "❌ Impossible d'envoyer la demande. Veuillez envoyer un email direct à " + DESTINATION_EMAIL;
+          const mailSubject = encodeURIComponent(`[Portfolio] Demande de projet de ${name}`);
+          const mailBody = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\nBudget: ${budget}\n\nMessage:\n${message}`);
+          const mailtoUrl = `mailto:${DESTINATION_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
+          formStatus.innerHTML = `❌ Échec de l'envoi direct. <a href="${mailtoUrl}" style="color: var(--gold-light); text-decoration: underline; font-weight: 600;">Cliquez ici pour envoyer votre message via votre application de messagerie</a> ou écrivez directement à <strong>${DESTINATION_EMAIL}</strong>.`;
       }
-      showToast("Erreur lors de l'envoi de la demande");
+      showToast("Erreur d'envoi. Un lien d'envoi direct par email a été généré.");
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
