@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description"
+    content="Moussa SAYAH • Senior Full-Stack Architect & Creative UI Engineer crafting high-performance, bespoke web applications and luxurious digital experiences." />
+  <meta name="author" content="Moussa SAYAH" />
+  <title>Moussa SAYAH • Architecte Full-Stack & UI Engineer de Luxe</title>
+
+  <!-- Google Fonts Prestige -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="./style.css" />
+  <script>
+    document.documentElement.classList.add("js");
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+  <!-- Canvas de Constellation & Effets d'Arrière-Plan -->
+  <canvas id="starfieldCanvas" class="starfield-canvas" aria-hidden="true"></canvas>
+
+  <div class="bg-lighting" aria-hidden="true">
+    <div class="glow-orb glow-orb--gold"></div>
+    <div class="glow-orb glow-orb--midnight"></div>
+    <div class="glow-orb glow-orb--cyan"></div>
+    <div class="obsidian-overlay"></div>
+  </div>
+
+  <!-- Curseur Interactif Sur-Mesure -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- En-Tête & Navigation de Prestige -->
+  <header class="site-header" data-header>
+    <nav class="nav container" aria-label="Navigation Principale">
+      <a class="brand" href="#top" aria-label="Moussa SAYAH - Retour en haut">
+        <span class="brand__insignia" aria-hidden="true">
+          <span class="insignia-text">MS</span>
+          <span class="insignia-glow"></span>
+        </span>
+        <span class="brand__details">
+          <span class="brand__name">Moussa <span class="brand__gold">SAYAH</span></span>
+          <span class="brand__title">Full-Stack Architect</span>
+        </span>
+      </a>
+
+      <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Ouvrir le menu">
+        <span class="nav__toggle-box">
+          <span class="nav__toggle-line"></span>
+          <span class="nav__toggle-line"></span>
+        </span>
+      </button>
+
+      <div class="nav__panel" data-nav-panel>
+        <ul class="nav__links" data-nav-links>
+          <li><a class="nav__link" href="#work">Projets d'Élite</a></li>
+          <li><a class="nav__link" href="#about">À Propos</a></li>
+          <li><a class="nav__link" href="#parcours">Parcours</a></li>
+          <li><a class="nav__link" href="#skills">Expertise</a></li>
+          <li><a class="nav__link" href="#testimonials">Témoignages</a></li>
+          <li><a class="nav__link" href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav__actions">
+          <!-- Bouton Effets Sonores (Web Audio API) -->
+          <button class="btn-icon" type="button" id="soundToggle" aria-label="Activer ou couper les effets sonores">
+            <span class="icon" aria-hidden="true" id="soundIcon">🔊</span>
+          </button>
+
+          <!-- Bouton Thème Dark / Light -->
+          <button class="btn-icon" type="button" data-theme-toggle aria-label="Changer de thème">
+            <span class="icon" aria-hidden="true" data-theme-icon>🌙</span>
+          </button>
+
+          <a class="btn btn--gold-glow" href="#contact">
+            <span>Contact Privé</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- Section Hero -->
+    <section class="hero container" id="top">
+      <div class="hero__main">
+        <div class="eyebrow-badge reveal">
+          <span class="eyebrow__star">✦</span>
+          <span>ARCHITECTE WEB & INGÉNIEUR UI D'EXCELLENCE</span>
+          <span class="eyebrow__star">✦</span>
+        </div>
+
+        <h1 class="hero__heading reveal">
+          Conception d'Applications Haute Performance & <span class="gold-gradient">Interfaces de Luxe</span>.
+        </h1>
+
+        <p class="hero__lead reveal">
+          Je suis <strong>Moussa SAYAH</strong>. J'ingénie des écosystèmes web sur-mesure combinant architecture
+          logicielle robuste, micro-interactions d'exception et performances sans compromis.
+        </p>
+
+        <div class="hero__actions reveal">
+          <a class="btn btn--gold-filled magnetic-btn" href="#work">
+            <span>Explorer les Réalisations</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a class="btn btn--obsidian-outline magnetic-btn" href="#contact">
+            <span>Consulter pour un Mandat</span>
+          </a>
+        </div>
+
+        <div class="hero__metrics reveal">
+          <div class="metric-card" data-count="6">
+            <div class="metric-card__val">
+              <span data-counter>0</span><span class="gold-plus">+</span>
+            </div>
+            <div class="metric-card__label">Années d'Expérience</div>
+          </div>
+          <div class="metric-card" data-count="45">
+            <div class="metric-card__val">
+              <span data-counter>0</span><span class="gold-plus">+</span>
+            </div>
+            <div class="metric-card__label">Projets d'Élite Livrés</div>
+          </div>
+          <div class="metric-card" data-count="100">
+            <div class="metric-card__val">
+              <span data-counter>0</span><span class="gold-plus">%</span>
+            </div>
+            <div class="metric-card__label">Satisfaction Clients</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte d'Insigne 3D Tilt -->
+      <div class="hero__insignia reveal">
+        <div class="prestige-card tilt-card" data-tilt>
+          <div class="prestige-card__shimmer"></div>
+
+          <div class="prestige-card__header">
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              <span>Disponible pour Mandats Rares</span>
+            </div>
+            <div class="gold-seal" aria-hidden="true">MS</div>
+          </div>
+
+          <div class="prestige-card__avatar-area">
+            <div class="avatar-ring">
+              <div class="avatar-inner">
+                <span class="avatar-monogram">MS</span>
+              </div>
+            </div>
+            <h2 class="prestige-card__name">Moussa SAYAH</h2>
+            <p class="prestige-card__role">Senior Full-Stack & UI Architect</p>
+          </div>
+
+          <div class="prestige-card__tags">
+            <span class="gold-tag">Next.js 14</span>
+            <span class="gold-tag">TypeScript</span>
+            <span class="gold-tag">Node.js</span>
+            <span class="gold-tag">Python</span>
+            <span class="gold-tag">PostgreSQL</span>
+            <span class="gold-tag">System Design</span>
+          </div>
+
+          <div class="prestige-card__footer">
+            <a class="btn btn--gold-sm btn--full" href="#contact">Initier un Échange</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Projets d'Élite / Work -->
+    <section class="section container" id="work" aria-labelledby="workHeading">
+      <div class="section-header reveal">
+        <span class="section-tag">VALEUR & RÉALISATIONS</span>
+        <h2 class="section-title" id="workHeading">Sélection de Travaux d'Exception</h2>
+        <p class="section-subtitle">
+          Une collection choisie d'applications web d'entreprise, d'architectures SaaS et de plateformes numériques à
+          fort impact.
+        </p>
+
+        <!-- Filtres par Catégorie -->
+        <div class="filter-pills" data-filter-bar>
+          <button class="pill-btn is-active" type="button" data-filter="all">Tous les Projets</button>
+          <button class="pill-btn" type="button" data-filter="fullstack">Full-Stack & Cloud</button>
+          <button class="pill-btn" type="button" data-filter="saas">SaaS & IA</button>
+          <button class="pill-btn" type="button" data-filter="ecommerce">E-Commerce de Luxe</button>
+          <button class="pill-btn" type="button" data-filter="fintech">Fintech & Web3</button>
+        </div>
+      </div>
+
+      <div class="projects-grid" data-projects-grid>
+        <!-- Projet 1 : Nexus AI -->
+        <article class="project-card reveal tilt-card" data-category="saas fullstack" data-tilt>
+          <div class="project-card__media">
+            <img src="./assets/nexus_ai.svg" alt="Nexus AI Analytics Platform" class="project-card__img"
+              loading="lazy" />
+            <div class="project-card__overlay"></div>
+            <span class="project-card__ribbon">SaaS & IA</span>
+          </div>
+
+          <div class="project-card__content">
+            <span class="project-card__category">Architecture Full-Stack • Intelligence Artificielle</span>
+            <h3 class="project-card__title">Plateforme Nexus AI Analytics</h3>
+            <p class="project-card__desc">
+              Tableau de bord décisionnel en temps réel intégrant la télémétrie prédictive, le traitement de données à
+              ultra-basse latence et une interface en verre obsidian.
+            </p>
+
+            <div class="project-card__stack">
+              <span>Next.js 14</span>
+              <span>TypeScript</span>
+              <span>Node.js</span>
+              <span>TailwindCSS</span>
+              <span>GraphQL</span>
+            </div>
+
+            <div class="project-card__actions">
+              <button class="btn-link btn-link--gold" type="button" data-open-modal="nexus">
+                <span>Étude de Cas Complète</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <a class="btn-link" href="#contact">
+                <span>Démo Directe</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Projet 2 : Aura E-Commerce -->
+        <article class="project-card reveal tilt-card" data-category="ecommerce fullstack" data-tilt>
+          <div class="project-card__media">
+            <img src="./assets/aura_ecommerce.svg" alt="Aura Luxury E-Commerce" class="project-card__img"
+              loading="lazy" />
+            <div class="project-card__overlay"></div>
+            <span class="project-card__ribbon">Haute Couture</span>
+          </div>
+
+          <div class="project-card__content">
+            <span class="project-card__category">Full-Stack • E-Commerce de Luxe</span>
+            <h3 class="project-card__title">Aura Moteur E-Commerce Luxe</h3>
+            <p class="project-card__desc">
+              Moteur e-commerce haut de gamme intégrant le rendu 3D interactif des produits, le panier instantané sans
+              rechargement et le paiement sécurisé multi-devises.
+            </p>
+
+            <div class="project-card__stack">
+              <span>React</span>
+              <span>Three.js</span>
+              <span>Stripe API</span>
+              <span>PostgreSQL</span>
+              <span>TailwindCSS</span>
+            </div>
+
+            <div class="project-card__actions">
+              <button class="btn-link btn-link--gold" type="button" data-open-modal="aura">
+                <span>Étude de Cas Complète</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <a class="btn-link" href="#contact">
+                <span>Démo Directe</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Projet 3 : Vanguard Fintech -->
+        <article class="project-card reveal tilt-card" data-category="fintech" data-tilt>
+          <div class="project-card__media">
+            <img src="./assets/vanguard_fintech.svg" alt="Vanguard Mobile Banking & Crypto" class="project-card__img"
+              loading="lazy" />
+            <div class="project-card__overlay"></div>
+            <span class="project-card__ribbon">Fintech & Web3</span>
+          </div>
+
+          <div class="project-card__content">
+            <span class="project-card__category">Fintech & Services Financiers</span>
+            <h3 class="project-card__title">Vanguard Banque Digitale & Crypto</h3>
+            <p class="project-card__desc">
+              Portail bancaire digital haute sécurité et gestionnaire d'actifs cryptographiques avec flux WebSockets
+              temps réel, graphiques financiers et sécurité renforcée.
+            </p>
+
+            <div class="project-card__stack">
+              <span>Vue 3</span>
+              <span>TypeScript</span>
+              <span>Express</span>
+              <span>WebSockets</span>
+              <span>Docker</span>
+            </div>
+
+            <div class="project-card__actions">
+              <button class="btn-link btn-link--gold" type="button" data-open-modal="vanguard">
+                <span>Étude de Cas Complète</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <a class="btn-link" href="#contact">
+                <span>Démo Directe</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Projet 4 : Pulse Automation -->
+        <article class="project-card reveal tilt-card" data-category="saas fullstack" data-tilt>
+          <div class="project-card__media">
+            <img src="./assets/pulse_workflow.svg" alt="Pulse AI Workflow Automation" class="project-card__img"
+              loading="lazy" />
+            <div class="project-card__overlay"></div>
+            <span class="project-card__ribbon">Automation</span>
+          </div>
+
+          <div class="project-card__content">
+            <span class="project-card__category">Architecture Cloud & Automation</span>
+            <h3 class="project-card__title">Pulse Automation de Workflows</h3>
+            <p class="project-card__desc">
+              Constructeur visuel de pipelines d'automatisation par nœuds interactifs, permettant la gestion
+              d'événements complexes et de tâches distribuées Redis.
+            </p>
+
+            <div class="project-card__stack">
+              <span>React Flow</span>
+              <span>Node.js</span>
+              <span>Python</span>
+              <span>Redis</span>
+              <span>PostgreSQL</span>
+            </div>
+
+            <div class="project-card__actions">
+              <button class="btn-link btn-link--gold" type="button" data-open-modal="pulse">
+                <span>Étude de Cas Complète</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <a class="btn-link" href="#contact">
+                <span>Démo Directe</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Modale Native d'Étude de Cas (<dialog>) -->
+    <dialog id="caseStudyModal" class="case-dialog">
+      <div class="case-dialog__container">
+        <button class="case-dialog__close" id="closeModalBtn" aria-label="Fermer la modale">✕</button>
+
+        <div class="case-dialog__body" id="modalDynamicContent">
+          <!-- Injecté dynamiquement par JS -->
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Section À Propos -->
+    <section class="section container" id="about" aria-labelledby="aboutHeading">
+      <div class="about-grid">
+        <div class="about-grid__text reveal">
+          <span class="section-tag">PHILOSOPHIE & VISION</span>
+          <h2 class="section-title" id="aboutHeading">Ingénierie de Haute Précision & Esthétique Numérique</h2>
+          <p class="lead-text">
+            L'excellence logicielle réside dans la rencontre entre une architecture technique sans faille et une
+            attention obsessionnelle aux détails visuels.
+          </p>
+          <p class="muted-text">
+            Fort de plus de 6 années d'expérience en ingénierie informatique et développement full-stack, j'accompagne
+            les fondateurs, leaders technologiques et marques de prestige dans la création d'applications web d'élite.
+            Mon approche combine rigueur de code, scalabilité cloud et micro-animations fluides.
+          </p>
+
+          <div class="pillars-list">
+            <div class="pillar">
+              <div class="pillar__icon">⚡</div>
+              <div>
+                <h3 class="pillar__title">Architecture Scalable & Propre</h3>
+                <p class="pillar__desc">Conception de systèmes modulaires maintenables, basés sur TypeScript, APIs
+                  REST/GraphQL et architectures micro-services.</p>
+              </div>
+            </div>
+
+            <div class="pillar">
+              <div class="pillar__icon">✦</div>
+              <div>
+                <h3 class="pillar__title">Interfaces d'Exception (UI/UX)</h3>
+                <p class="pillar__desc">Création de Design Systems élégants, interfaces verre obsidian et animations
+                  réactives à 60 FPS.</p>
+              </div>
+            </div>
+
+            <div class="pillar">
+              <div class="pillar__icon">🚀</div>
+              <div>
+                <h3 class="pillar__title">Optimisation & Vitesse Extrême</h3>
+                <p class="pillar__desc">Maximisation des Core Web Vitals, temps de réponse sous 50ms et accessibilité
+                  conforme WCAG AA.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-grid__cards reveal">
+          <div class="gold-panel">
+            <div class="gold-panel__head">
+              <span>Prestations Stratégiques</span>
+              <span class="gold-badge">Services</span>
+            </div>
+            <ul class="checklist">
+              <li>Développement d'Applications Web Full-Stack</li>
+              <li>Architecture SaaS & Tableaux de Bord sur-mesure</li>
+              <li>Design Systems & Audit UI/UX de Luxe</li>
+              <li>Optimisation de Performance Web & SecOps</li>
+            </ul>
+            <div class="gold-panel__cta">
+              <a class="btn btn--gold-filled btn--full" href="#contact">Réserver une Consultation</a>
+            </div>
+          </div>
+
+          <div class="gold-panel gold-panel--dark">
+            <div class="gold-panel__head">
+              <span>Écosystème & Stack Technique</span>
+              <span class="gold-badge">Technologies</span>
+            </div>
+            <div class="tech-pills">
+              <span>TypeScript</span>
+              <span>React & Next.js 14</span>
+              <span>Node.js / Express</span>
+              <span>Python / FastAPI</span>
+              <span>PostgreSQL & Redis</span>
+              <span>GraphQL & WebSockets</span>
+              <span>TailwindCSS / CSS Vanilla</span>
+              <span>Docker & Cloud AWS/Vercel</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Parcours & Timeline -->
+    <section class="section container" id="parcours" aria-labelledby="parcoursHeading">
+      <div class="section-header reveal">
+        <span class="section-tag">TRAJECTOIRE</span>
+        <h2 class="section-title" id="parcoursHeading">Parcours & Expérience Exécutive</h2>
+        <p class="section-subtitle">
+          Une évolution guidée par l'exigence technique et la livraison de valeur à fort impact.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <!-- Étape 1 -->
+        <div class="timeline__item reveal">
+          <div class="timeline__marker"></div>
+          <div class="timeline__content">
+            <div class="timeline__meta">
+              <span class="timeline__period">2023 — PRÉSENT</span>
+              <span class="timeline__location">Paris / Remote</span>
+            </div>
+            <h3 class="timeline__role">Lead Full-Stack Architect & Consultant UI</h3>
+            <h4 class="timeline__company">Moussa SAYAH Consulting</h4>
+            <p class="timeline__desc">
+              Direction technique pour des startups SaaS et entreprises de croissance. Conception d'architectures
+              Next.js 14 et Node.js hautement scalables, audits de performance Web Vitals et encadrement d'équipes
+              d'ingénierie.
+            </p>
+            <div class="timeline__tags">
+              <span>Architecture Cloud</span>
+              <span>Next.js 14</span>
+              <span>Design Systems</span>
+              <span>TypeScript</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="timeline__item reveal">
+          <div class="timeline__marker"></div>
+          <div class="timeline__content">
+            <div class="timeline__meta">
+              <span class="timeline__period">2021 — 2023</span>
+              <span class="timeline__location">Paris, France</span>
+            </div>
+            <h3 class="timeline__role">Senior Full-Stack Engineer</h3>
+            <h4 class="timeline__company">Apex Digital Technologies</h4>
+            <p class="timeline__desc">
+              Développement des fonctionnalités phares d'une suite SaaS d'analyse de données. Optimisation de la latence
+              des requêtes SQL de 45%, mise en place de flux WebSockets temps réel et refonte de l'interface
+              utilisateur.
+            </p>
+            <div class="timeline__tags">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>PostgreSQL</span>
+              <span>WebSockets</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Étape 3 -->
+        <div class="timeline__item reveal">
+          <div class="timeline__marker"></div>
+          <div class="timeline__content">
+            <div class="timeline__meta">
+              <span class="timeline__period">2019 — 2021</span>
+              <span class="timeline__location">Lyon, France</span>
+            </div>
+            <h3 class="timeline__role">UI/UX Engineer & Creative Technologist</h3>
+            <h4 class="timeline__company">Lumina Interactive Studio</h4>
+            <p class="timeline__desc">
+              Création de sites web immersifs et e-commerce haut de gamme pour des marques internationales.
+              Développement de composants d'animation Three.js et intégration de systèmes de paiement Stripe.
+            </p>
+            <div class="timeline__tags">
+              <span>JavaScript ES6+</span>
+              <span>Three.js</span>
+              <span>CSS3/HTML5</span>
+              <span>Stripe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Expertise Technologique -->
+    <section class="section container" id="skills" aria-labelledby="skillsHeading">
+      <div class="section-header reveal">
+        <span class="section-tag">COMPÉTENCES</span>
+        <h2 class="section-title" id="skillsHeading">Maîtrise Technologique</h2>
+        <p class="section-subtitle">Niveau d'expertise opérationnelle à travers les couches de développement moderne.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-card__header">
+            <h3 class="skill-card__name">Front-End & UI Design Systems</h3>
+            <span class="skill-card__perc">96%</span>
+          </div>
+          <p class="skill-card__desc">React, Next.js 14, TypeScript, CSS Vanilla, TailwindCSS, micro-interactions,
+            accessibilité.</p>
+          <div class="gold-meter">
+            <span class="gold-meter__fill" style="--val: 96%"></span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-card__header">
+            <h3 class="skill-card__name">Backend & Architecture APIs</h3>
+            <span class="skill-card__perc">92%</span>
+          </div>
+          <p class="skill-card__desc">Node.js, Express, Python (FastAPI), APIs RESTful, GraphQL, micro-services.</p>
+          <div class="gold-meter">
+            <span class="gold-meter__fill" style="--val: 92%"></span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-card__header">
+            <h3 class="skill-card__name">Bases de Données & Cloud</h3>
+            <span class="skill-card__perc">88%</span>
+          </div>
+          <p class="skill-card__desc">PostgreSQL, Redis, MongoDB, Docker, AWS (S3, EC2), Vercel infrastructure.</p>
+          <div class="gold-meter">
+            <span class="gold-meter__fill" style="--val: 88%"></span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-card__header">
+            <h3 class="skill-card__name">Performance & SecOps Web</h3>
+            <span class="skill-card__perc">94%</span>
+          </div>
+          <p class="skill-card__desc">Core Web Vitals, optimisation LCP/INP, sécurité OAuth2/JWT, audit sémantique.</p>
+          <div class="gold-meter">
+            <span class="gold-meter__fill" style="--val: 94%"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="section container" id="testimonials" aria-labelledby="testimonialsHeading">
+      <div class="section-header reveal">
+        <span class="section-tag">CONFIANCE</span>
+        <h2 class="section-title" id="testimonialsHeading">Recommandations & Distinctions</h2>
+        <p class="section-subtitle">Retours d'expérience de fondateurs, directeurs techniques et responsables produit.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <article class="quote-card reveal">
+          <div class="quote-card__stars">★★★★★</div>
+          <blockquote class="quote-card__text">
+            “Moussa possède une double compétence rarissime : une parfaite compréhension des architectures backend et
+            une maîtrise visuelle hors pair. Notre taux de conversion a bondi de 140% après la livraison de notre
+            plateforme.”
+          </blockquote>
+          <footer class="quote-card__author">
+            <div class="quote-card__avatar">SM</div>
+            <div>
+              <strong class="quote-card__name">Sarah Mitchell</strong>
+              <span class="quote-card__role">Fondatrice & CEO, TechScale International</span>
+            </div>
+          </footer>
+        </article>
+
+        <article class="quote-card reveal">
+          <div class="quote-card__stars">★★★★★</div>
+          <blockquote class="quote-card__text">
+            “Collaborer avec Moussa SAYAH a été une révélation. Rigoureux, réactif, il a conçu un système de composants
+            modulaire d'une élégance absolue qui a considérablement accéléré nos cycles de développement.”
+          </blockquote>
+          <footer class="quote-card__author">
+            <div class="quote-card__avatar">OK</div>
+            <div>
+              <strong class="quote-card__name">Omar Karim</strong>
+              <span class="quote-card__role">Directeur Produit, FinPulse Group</span>
+            </div>
+          </footer>
+        </article>
+
+        <article class="quote-card reveal">
+          <div class="quote-card__stars">★★★★★</div>
+          <blockquote class="quote-card__text">
+            “Moussa a livré notre projet e-commerce de luxe avec deux semaines d'avance. La fluidité des animations et
+            la vitesse de chargement sur mobile sont tout simplement impressionnantes.”
+          </blockquote>
+          <footer class="quote-card__author">
+            <div class="quote-card__avatar">NA</div>
+            <div>
+              <strong class="quote-card__name">Nadia Alami</strong>
+              <span class="quote-card__role">Directrice Artistique, Nexus Digital Studio</span>
+            </div>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section Contact Exécutif -->
+    <section class="section container" id="contact" aria-labelledby="contactHeading">
+      <div class="contact-card reveal">
+        <div class="contact-card__info">
+          <span class="section-tag">DIALOGUE & MANDATS</span>
+          <h2 class="section-title" id="contactHeading">Discutons de Votre Prochain Projet</h2>
+          <p class="section-subtitle">
+            Vous préparez le lancement d'une application stratégique ou souhaitez refondre votre plateforme avec un
+            niveau de finition d'exception ? Prenons contact.
+          </p>
+
+          <div class="direct-email">
+            <span class="direct-email__label">Email Direct :</span>
+            <div class="direct-email__box">
+              <a class="direct-email__link" id="contactEmail"
+                href="mailto:moussasayah.dev@gmail.com">moussasayah.dev@gmail.com</a>
+              <button class="btn btn--copy" type="button" id="copyEmailBtn" aria-label="Copier l'adresse email">
+                <span id="copyBtnText">Copier</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+            <span class="social-sep">•</span>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
+            <span class="social-sep">•</span>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link">Twitter / X</a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="userName">Votre Nom & Prénom</label>
+            <input class="form-input" type="text" id="userName" name="name" placeholder="ex: Jean Dupont" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userEmail">Adresse Email Professionnelle</label>
+            <input class="form-input" type="email" id="userEmail" name="email" placeholder="ex: jean@entreprise.com"
+              required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Budget Approximatif du Projet</label>
+            <div class="budget-options">
+              <label class="budget-chip">
+                <input type="radio" name="budget" value="< 30kDZ" />
+                <span>&lt; 30 000 DZ</span>
+              </label>
+              <label class="budget-chip">
+                <input type="radio" name="budget" value="30kDZ - 500kDZ" checked />
+                <span>30kDZ — 500kDZ</span>
+              </label>
+              <label class="budget-chip">
+                <input type="radio" name="budget" value="50kDZ+" />
+                <span>50 000 DZ +</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label class="form-label" for="userMessage">Détails de Votre Demande</label>
+            <textarea class="form-input form-textarea" id="userMessage" name="message" rows="4"
+              placeholder="Présentez brièvement vos objectifs, délais et exigences..." required></textarea>
+          </div>
+
+          <button class="btn btn--gold-filled btn--full magnetic-btn" type="submit">
+            <span>Envoyer la Demande</span>
+            <span class="btn__sparkle" aria-hidden="true"></span>
+          </button>
+
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bulle Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Pied de Page Prestige -->
+  <footer class="footer container">
+    <div class="footer__inner">
+      <p class="footer__copy">© <span id="currentYear"></span> <strong>Moussa SAYAH</strong>. Tous droits réservés.
+        Écriture & Ingénierie d'Exception.</p>
+      <a class="footer__top btn-link" href="#top">Haut de page <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
