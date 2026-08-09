@@ -458,7 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const formStatus = document.getElementById("formStatus");
 
   // Adresse email destinataire (facilement modifiable)
-  const DESTINATION_EMAIL = "moussasayah.dev@gmail.com";
+  const DESTINATION_EMAIL = "moussa.sayah021984@gmail.com";
 
   contactForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
