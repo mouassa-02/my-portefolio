@@ -1429,13 +1429,17 @@ textarea {
 }
 
 .budget-chip span {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
   text-align: center;
-  padding: 10px 8px;
+  padding: 8px 10px;
   border-radius: var(--radius-md);
   background: rgba(0, 0, 0, 0.35);
   border: 1px solid var(--border-glass);
   font-size: 0.8rem;
+  white-space: nowrap;
   color: var(--text-muted);
   cursor: pointer;
   transition: all var(--dur);
