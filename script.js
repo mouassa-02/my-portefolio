@@ -376,15 +376,15 @@ document.addEventListener("DOMContentLoaded", () => {
         
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 30px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 16px; border: 1px solid var(--border-gold);">
           ${data.metrics
-            .map(
-              (m) => `
+          .map(
+            (m) => `
             <div>
               <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--gold-light);">${m.val}</div>
               <div style="font-size: 0.8rem; color: var(--text-muted);">${m.label}</div>
             </div>
           `
-            )
-            .join("")}
+          )
+          .join("")}
         </div>
 
         <h3 style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 10px;">Architecture Technique</h3>
@@ -453,19 +453,89 @@ document.addEventListener("DOMContentLoaded", () => {
     playLuxuryClick(750);
   });
 
-  // 12. Soumission du Formulaire de Contact
+  // 12. Soumission du Formulaire de Contact via Service Email (FormSubmit API)
   const contactForm = document.getElementById("contactForm");
   const formStatus = document.getElementById("formStatus");
 
-  contactForm?.addEventListener("submit", (e) => {
+  // Adresse email destinataire (facilement modifiable)
+  const DESTINATION_EMAIL = "moussasayah.dev@gmail.com";
+
+  contactForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
     playLuxuryClick(950);
 
+    const submitBtn = contactForm.querySelector("button[type='submit']");
+    const name = document.getElementById("userName")?.value.trim();
+    const email = document.getElementById("userEmail")?.value.trim();
+    const message = document.getElementById("userMessage")?.value.trim();
+    const budgetEl = contactForm.querySelector('input[name="budget"]:checked');
+    const budget = budgetEl ? budgetEl.value : "Non précisé";
+
+    if (!name || !email || !message) {
+      if (formStatus) {
+        formStatus.style.color = "#ff6b6b";
+        formStatus.textContent = "⚠️ Veuillez remplir tous les champs requis.";
+      }
+      return;
+    }
+
+    // État de chargement visuel du bouton
+    const originalBtnHTML = submitBtn ? submitBtn.innerHTML : "";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.7";
+      submitBtn.innerHTML = `<span>Envoi en cours...</span>`;
+    }
+
     if (formStatus) {
       formStatus.style.color = "var(--gold-light)";
-      formStatus.textContent = "✦ Transmis avec succès. Moussa SAYAH vous répondra sous 24h.";
+      formStatus.textContent = "✦ Transmissions des données en cours...";
     }
-    contactForm.reset();
-    showToast("Votre message a été transmis directement à Moussa SAYAH");
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${DESTINATION_EMAIL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          _subject: `📩 Nouvelle demande de projet de : ${name}`,
+          _template: "table",
+          "Nom & Prénom": name,
+          "Email du Client": email,
+          "Budget Proposé": budget,
+          "Détails du Projet": message
+        })
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success !== "false") {
+        if (formStatus) {
+          formStatus.style.color = "var(--gold-light)";
+          formStatus.textContent = "✦ Demande transmise avec succès ! Moussa SAYAH vous répondra sous 24h.";
+        }
+        contactForm.reset();
+        showToast("Votre message a été transmis directement par email !");
+        playLuxuryClick(1100);
+      } else {
+        throw new Error(result.message || "Erreur de transmission");
+      }
+    } catch (err) {
+      console.error("Erreur envoi email:", err);
+      if (formStatus) {
+        formStatus.style.color = "#ff6b6b";
+        formStatus.textContent = "❌ Impossible d'envoyer la demande. Veuillez envoyer un email direct à " + DESTINATION_EMAIL;
+      }
+      showToast("Erreur lors de l'envoi de la demande");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+        submitBtn.innerHTML = originalBtnHTML;
+      }
+    }
   });
 });
+
