@@ -1380,11 +1380,16 @@ textarea {
 
 .contact-form {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 
-.form-group--full {
+.form-group {
+  min-width: 0;
+}
+.form-group--full,
+.contact-form button[type="submit"],
+.contact-form .btn--full {
   grid-column: 1 / -1;
 }
 
