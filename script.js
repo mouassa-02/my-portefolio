@@ -502,6 +502,7 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({
           _subject: `📩 Nouvelle demande de projet de : ${name}`,
           _template: "table",
+          _captcha: "false",
           "Nom & Prénom": name,
           "Email du Client": email,
           "Budget Proposé": budget,
@@ -529,9 +530,14 @@ document.addEventListener("DOMContentLoaded", () => {
           const mailSubject = encodeURIComponent(`[Portfolio] Demande de projet de ${name}`);
           const mailBody = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\nBudget: ${budget}\n\nMessage:\n${message}`);
           const mailtoUrl = `mailto:${DESTINATION_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
-          formStatus.innerHTML = `❌ Échec de l'envoi direct. <a href="${mailtoUrl}" style="color: var(--gold-light); text-decoration: underline; font-weight: 600;">Cliquez ici pour envoyer votre message via votre application de messagerie</a> ou écrivez directement à <strong>${DESTINATION_EMAIL}</strong>.`;
+          const isActivationErr = err.message && err.message.toLowerCase().includes("activat");
+        if (isActivationErr) {
+          formStatus.innerHTML = `⚠️ <strong>Activation FormSubmit requise :</strong> Un email de confirmation a été envoyé à <strong>${DESTINATION_EMAIL}</strong>. Veuillez cliquer sur le lien d'activation dans votre boîte mail, puis réessayez.`;
+        } else {
+          formStatus.innerHTML = `❌ Échec de l'envoi direct via FormSubmit.<br><a href="${mailtoUrl}" style="color: var(--gold-light); text-decoration: underline; font-weight: 600;">📧 Cliquez ici pour envoyer votre message via votre client mail</a> ou écrivez directement à <strong>${DESTINATION_EMAIL}</strong>.`;
+        }
       }
-      showToast("Erreur d'envoi. Un lien d'envoi direct par email a été généré.");
+      showToast("Vérifiez l'email d'activation ou utilisez le lien direct.");
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
