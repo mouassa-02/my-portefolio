@@ -520,24 +520,24 @@ document.addEventListener("DOMContentLoaded", () => {
         contactForm.reset();
         showToast("Votre message a été transmis directement par email !");
         playLuxuryClick(1100);
+        if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+        submitBtn.innerHTML = originalBtnHTML;
+        }
       } else {
-        throw new Error(result.message || "Erreur de transmission");
+         throw new Error(result.message || "Activation requise ou basculement natif");
       }
     } catch (err) {
-      console.error("Erreur envoi email:", err);
+      console.warn("Transmission AJAX bloquée (CORS/file:// ou première activation requise). Soumission native...", err);
       if (formStatus) {
-        formStatus.style.color = "#ff6b6b";
-          const mailSubject = encodeURIComponent(`[Portfolio] Demande de projet de ${name}`);
-          const mailBody = encodeURIComponent(`Nom: ${name}\nEmail: ${email}\nBudget: ${budget}\n\nMessage:\n${message}`);
-          const mailtoUrl = `mailto:${DESTINATION_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
-          const isActivationErr = err.message && err.message.toLowerCase().includes("activat");
-        if (isActivationErr) {
-          formStatus.innerHTML = `⚠️ <strong>Activation FormSubmit requise :</strong> Un email de confirmation a été envoyé à <strong>${DESTINATION_EMAIL}</strong>. Veuillez cliquer sur le lien d'activation dans votre boîte mail, puis réessayez.`;
-        } else {
-          formStatus.innerHTML = `❌ Échec de l'envoi direct via FormSubmit.<br><a href="${mailtoUrl}" style="color: var(--gold-light); text-decoration: underline; font-weight: 600;">📧 Cliquez ici pour envoyer votre message via votre client mail</a> ou écrivez directement à <strong>${DESTINATION_EMAIL}</strong>.`;
-        }
+        formStatus.style.color = "var(--gold-light)";
+        formStatus.textContent = "✦ Redirection sécurisée vers la transmission FormSubmit...";
       }
-      showToast("Vérifiez l'email d'activation ou utilisez le lien direct.");
+      // Soumission HTML native infaillible (marche sur file:// et déclenche l'écran d'activation FormSubmit)
+      contactForm.action = `https://formsubmit.co/${DESTINATION_EMAIL}`;
+      contactForm.method = "POST";
+      HTMLFormElement.prototype.submit.call(contactForm);
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
